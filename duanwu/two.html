@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv= "expires" content= "0"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我只“粽”意你</title>
+    <link rel="stylesheet" href="../css/duanwu_css/base.css">
+    <link rel="stylesheet" href="https://cdn.dowebok.com/98/css/animate.min.css">
+    <style>
+        *{margin: 0;padding: 0;}
+        html,body{width: 100%;height: 100%;background: url(../images/duanwu_img/diban.png) bottom center repeat;background-size: 100%;}
+        .con{width: 100%;height: 100%;position: relative;background: url(../images/duanwu_img/001-bg.png) top center no-repeat;background-size: 100%;}
+        /* .img img{width: 100%;height: auto;display: block;margin: 0 auto;} */
+        .box{width: 250px;height: 310px;position: absolute; left: 50%;top: 75%;transform: translate(-50%,-50%);background: url(../images/duanwu_img/002-ji.png) top center no-repeat;background-size: 100%;box-sizing: border-box;padding:50px 70px 100px 35px;}
+        .box .zz{display: inline-block;}
+        .box img{width: 45px;height: auto;}
+        .oneline{box-sizing: border-box;padding-left: 5px;}
+        .oneline div{margin: 15px 8px;}
+        .text{width: 60%;position: absolute; left: 50%;top: 25%;transform: translate(-50%,-50%);}
+        .text img{width: 100%;}
+        .chuo{width: 65px;height: auto;position: absolute;left: 10px;bottom: 10%;}
+        .con::-webkit-scrollbar { width: 0 !important }
+        .con::-webkit-scrollbar { display: none; }
+        .con { -ms-overflow-style: none; }
+        .con { overflow: -moz-scrollbars-none; }
+    </style>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript">
+      function is_weixin(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {//alert(1);
+          return true;
+        } else {//alert(2)
+          return false;
+        };
+      };
+      if(is_weixin()){
+        var link = "${obj.link?!''}";
+        var type = "link";
+        var dataUrl = "";//"${obj.dataUrl}";
+        var img_url = "https://dgtt.besttoptoday.com/series/list/20206/e2i6WpjsE2.jpg";
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: "${obj.appId?!''}", // 必填，公众号的唯一标识
+          timestamp: "${obj.timestamp?!''}", // 必填，生成签名的时间戳
+          nonceStr: "${obj.nonceStr?!''}", // 必填，生成签名的随机串
+          signature: "${obj.signature?!''}", // 必填，签名，见附录1
+          jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'translateVoice',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'onVoicePlayEnd',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'downloadVoice'
+          ]  // 必填，需要使用的JS接口列表，所有JS接口列表见附录2 ngrok
+        });
+
+        wx.ready(function(){
+
+          wx.hideMenuItems({
+            menuList: ["menuItem:copyUrl"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+          });
+          // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+
+          //分享到朋友圈
+          wx.onMenuShareTimeline({
+            title: "这个端午，我只“粽”意你", // 分享标题
+            link: link, // 分享链接，该链接域名必须与当前企业的可信域名一致
+            imgUrl: img_url , // 分享图标
+            dataUrl: dataUrl,
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              // $.post("zhuanfa",{"id":audioId},function(data){console.log("转发成功！")});
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+
+          //分享到朋友
+          wx.onMenuShareAppMessage({
+            title: "这个端午，我只“粽”意你", // 分享标题
+            desc: "今今乐道读书会为你献上端午“盲粽”", // 分享描述
+            link: link, // 分享链接，该链接域名必须与当前企业的可信域名一致
+            imgUrl: img_url, // 分享图标
+            type: type, // 分享类型,music、video或link，不填默认为link
+            dataUrl: dataUrl, // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              // $.post("zhuanfa",{"id":audioId},function(data){console.log("转发成功！")});
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+        });
+      }
+    </script>
+</head>
+<body>
+<!-- app内ios分享 -->
+<div style="display:none"><p class="bbh_p">50</p ><p id="shortTitle" style="display:none;">今今乐道读书会为你献上端午“盲粽”</p >
+<img src="../images/duanwu_img/share.jpg" style="display:none;" id="picture"><span id="shareUrl">${obj.link}</span></div>
+<div class="con">
+    <div class="text"><img src="../images/duanwu_img/002-text.png" alt=""></div>
+    <div class="box">
+        <div class="oneline">
+            <div class="one zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0s"><img class="zzimg" src="../images/duanwu_img/002-zz1.png" alt=""></div>
+            <div class="two zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.1s"><img class="zzimg" src="../images/duanwu_img/002-zz2.png" alt=""></div>
+        </div>
+        <div>
+            <div class="three zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.2s"><img class="zzimg" src="../images/duanwu_img/002-zz3.png" alt=""></div>
+            <div class="four zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.3s"><img class="zzimg" src="../images/duanwu_img/002-zz4.png" alt=""></div>
+            <div class="five zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.4s"><img class="zzimg" src="../images/duanwu_img/002-zz5.png" alt=""></div>
+        </div>
+        <div class="oneline">
+            <div class="six zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.5s"><img class="zzimg" src="../images/duanwu_img/002-zz6.png" alt=""></div>
+            <div class="seven zz wow bounceInDown animated" data-wow-duration="1s" data-wow-delay="0.6s"><img class="zzimg" src="../images/duanwu_img/002-zz7.png" alt=""></div>
+        </div>
+    </div>
+    <img class="chuo wow swing animated" src="../images/duanwu_img/002-chuo.png" alt="">
+</div>
+<div class="tip" style="display: none;position: absolute;padding: 10px;background: rgba(0,0,0,.6);color: white;top: 50%;left: 50%;transform: translate(-50%, -50%);border-radius: 10px;"></div>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<!--分享-->
+<script type="text/javascript">
+  var u = navigator.userAgent, app =  navigator.appVersion;
+  var isAndroid = u.indexOf('Android') > -1 ||  u.indexOf('Linux') > -1; //android终端或者uc浏览器
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac  OS X/); //ios终端
+  var isiosapp = u.indexOf('Safari') == -1 &&  u.indexOf('Language') == -1 &&  u.indexOf('MicroMessenger') == -1;
+  var isanapp = u.indexOf('igetapp') > -1;
+  //判断该页面是否在微信上？
+  function is_weixn(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger")  {//alert(1);
+      return true;
+    } else {//alert(2)
+      return false;
+    };
+  };
+  function toptodayandroid(top){
+    var bt = "这个端午，我只“粽”意你";
+    var fb =  "今今乐道读书会为你献上端午“盲粽”";
+    var pic =  "https://dgtt.besttoptoday.com/series/list/20206/e2i6WpjsE2.jpg";
+    var url = "${obj.link}";
+    //url = "http://"+url+"/index/share?ucid=${obj.user_id}";
+    console.log(url);
+    var bb = top;
+    $(".bbh_p").text(bb);
+    if(bb>=43){
+      function chc(){
+        window.local_obj.getShareInfo(bt,fb,pic,url);
+      };
+      chc();
+    };
+  };
+  //ios显示分享按钮
+  //微信
+  if(is_weixn()){
+    $('.qrcode').show();
+    $('.share').remove();
+  }
+  // iOS 浏览器和 Android 浏览器
+  if(!is_weixn() && !isiosapp && isiOS || !is_weixn() && !isanapp && isAndroid){
+    $('.qrcode').show();
+    $('.share').remove();
+  }
+  // iosAPP AndroidAPP
+  if(isiOS&&isiosapp){
+    //判断选择的哪个
+    $('.share').show();
+    $('.qrcode').remove();
+    $('.share').click(function(){
+      window.location = "share://share_text";
+    });
+  }else if(isAndroid && isanapp){
+    $('.share').show();
+    $('.qrcode').remove();
+    $('.share').click(function(){
+      window.local_obj.shouldStartLoadWithRequest("share://share_text");
+    });
+  }
+</script>
+<!--判断环境-->
+<script type="text/javascript">
+  window.onload = function() {
+    $(function() {
+      //判断手机环境
+      var u = navigator.userAgent, app = navigator.appVersion;
+      var isAndroid = u.indexOf('Android') > -1
+        || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      var isiosapp = u.indexOf('Safari') == -1
+        && u.indexOf('Language') == -1
+        && u.indexOf('MicroMessenger') == -1;
+      var isanapp = u.indexOf('igetapp') > -1;
+      function is_weixn() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+          return true;
+        } else {
+          return false;
+        }
+        ;
+      }
+      ;
+
+      if(isiOS && screen.height >= 812 && isiosapp && !is_weixn()){
+      // if (isiOS && screen.height >= 812 && !is_weixn()) {
+        // iphone x app
+        $('body').css("margin-top","88px");
+        $('body').css("padding-bottom","34px");
+        var oMeta = document.createElement('meta');
+        oMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover';
+        oMeta.name = 'viewport';
+        document.getElementsByTagName('head')[0].appendChild(oMeta);
+
+        $(".box").css({top: '65%'})
+        $(".chuo").css({bottom: '24%'})
+
+      }
+
+      if (screen.height >= 812 && is_weixn()) {
+        // iphone x app
+        // $('.wrap').css("padding-top","60px"); // 兼容iPhone X
+        var oMeta = document.createElement('meta');
+        oMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover';
+        oMeta.name = 'viewport';
+        document.getElementsByTagName('head')[0].appendChild(oMeta);
+
+        $(".box").css({top: '65%'})
+        $(".chuo").css({bottom: '24%'})
+
+      }
+
+
+
+
+      if ((screen.width <= 340)) {
+        //iphone 5 app
+        var oMeta = document.createElement('meta');
+        oMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        oMeta.name = 'viewport';
+        document.getElementsByTagName('head')[0].appendChild(oMeta);
+        $(".chuo").css({width: '45px'})
+
+      };
+    })
+  }
+</script>
+<script src="https://cdn.dowebok.com/131/js/wow.min.js"></script>
+<script>
+    $(function () {
+      var ucid = ''
+      var url = location.search; //获取url中"?"符后的字串 ('?modFlag=business&role=1')
+      var theRequest = new Object();
+      if ( url.indexOf( "?" ) != -1 ) {
+        var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；
+        var strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+        }
+        // console.log( theRequest.ucid );
+        ucid = theRequest.ucid;
+      }
+      var zongzi_1,zongzi_2,zongzi_3,zongzi_4,zongzi_5,zongzi_6,zongzi_7
+      $.ajax({
+        url:'getZongzi',
+        data:{ucid:ucid},
+        success:function(res){
+          if(res.ok){
+            console.log(res);
+            // var data = res.data
+            zongzi_1 = res.zongzi[0]
+            zongzi_2 = res.zongzi[1]
+            zongzi_3 = res.zongzi[2]
+            zongzi_4 = res.zongzi[3]
+            zongzi_5 = res.zongzi[4]
+            zongzi_6 = res.zongzi[5]
+            zongzi_7 = res.zongzi[6]
+            for (let i = 0; i < 8; i++) {
+              if (res.zongzi[i] == 1){
+                // console.log('1')
+                $('.box').find(".zzimg").eq(i).attr('src','../images/duanwu_img/002-zz'+(i+1)+'.png')
+              } else if (res.zongzi[i] == 2){
+                // console.log('2')
+                $('.box').find(".zzimg").eq(i).attr('src','../images/duanwu_img/002-kz'+(i+1)+'.png')
+              }
+            }
+          }else{
+            console.log(res.msg);
+            $(".tip").html(res.msg)
+            $(".tip").show()
+            setTimeout(function () {
+              window.location.replace('login')
+            },800)
+          }
+        }
+      });
+      var btn1 = true
+      $(".one").click(function () {
+          console.log('one')
+          console.log(zongzi_1)
+          if (zongzi_1 == 1 && btn1) {
+            btn1 = false
+            zongzi_1 = 2
+            console.log(zongzi_1)
+            // 未打开
+            $.ajax({
+              url:'update',
+              data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+              success:function(res){
+                btn1 = true
+                if(res.ok){
+                  console.log(res.msg);
+                  // $('.box .one img').attr('src','../images/duanwu_img/002-kz1.png')
+                  window.location.replace('index_three?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+                }else{
+                  // alert(res.msg);
+                  // 点击超过5次
+                  window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+                }
+              }
+            });
+          } else if (zongzi_1 == 2) {
+            // 已打开不在请求数据
+            window.location.replace('index_three?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+          }
+        })
+
+      var btn2 = true
+      $(".two").click(function () {
+        // window.location.href='four.html'
+        console.log('two')
+        console.log(zongzi_2)
+        if (zongzi_2 == 1 && btn2) {
+          btn2 = false
+          zongzi_2 = 2
+          console.log(zongzi_2)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn2 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_four?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_2 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_four?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      var btn3 = true
+      $(".three").click(function () {
+        // window.location.href='five.html'
+        if (zongzi_3 == 1 && btn3) {
+          btn3 = false
+          zongzi_3 = 2
+          console.log(zongzi_3)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn3 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_five?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_3 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_five?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      var btn4 = true
+      $(".four").click(function () {
+        // window.location.href='six.html'
+        if (zongzi_4 == 1 && btn4) {
+          btn4 = false
+          zongzi_4 = 2
+          console.log(zongzi_4)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn4 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_six?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_4 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_six?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      var btn5 = true
+      $(".five").click(function () {
+        if (zongzi_5 == 1 && btn5) {
+          btn5 = false
+          zongzi_5 = 2
+          console.log(zongzi_5)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn5 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_seven?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_5 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_seven?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      var btn6 = true
+      $(".six").click(function () {
+        if (zongzi_6 == 1 && btn6) {
+          btn6 = false
+          zongzi_6 = 2
+          console.log(zongzi_6)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn6 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_eight?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_6 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_eight?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      var btn7 = true
+      $(".seven").click(function () {
+        if (zongzi_7 == 1 && btn7) {
+          btn7 = false
+          zongzi_7 = 2
+          console.log(zongzi_7)
+          // 未打开
+          $.ajax({
+            url:'update',
+            data:{ucid:ucid,zongzi_1:zongzi_1,zongzi_2:zongzi_2,zongzi_3:zongzi_3,zongzi_4:zongzi_4,zongzi_5:zongzi_5,zongzi_6:zongzi_6,zongzi_7:zongzi_7},
+            success:function(res){
+              btn7 = true
+              if(res.ok){
+                console.log(res.msg);
+                window.location.replace('index_nine?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }else{
+                // alert(res.msg);
+                // 点击超过5次
+                window.location.replace('index_ten?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+              }
+            }
+          });
+        } else if (zongzi_7 == 2) {
+          // 已打开不在请求数据
+          window.location.replace('index_nine?ucid=${obj.ucid}&isWKWebview=${obj.isWKWebview}')
+        }
+      })
+      // new WOW().init();
+    })
+</script>
+</body>
+</html>
